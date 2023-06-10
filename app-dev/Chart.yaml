@@ -1,0 +1,5 @@
+apiVersion: v2
+name: app-dev-service
+description: A Helm chart for Sohag apps
+version: 0.1.0
+appVersion: "1.0"

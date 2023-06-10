@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dev
+  labels:
+    app: app-dev
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: app-dev
+  template:
+    metadata:
+      labels:
+        app: app-dev
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ecr
+      containers:
+        - name: app-dev
+          image: yeasy/simple-web
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: {{ .Values.cpu }}
+              memory: {{ .Values.memory }}
+            limits:
+              cpu: {{ .Values.cpu }}
+              memory: {{ .Values.memory }}
